@@ -7,6 +7,8 @@ Keep in mind that the instructions to the assignments are not here but instead d
 ## Tips
 - **Read the assignments carefully!** a lot of information is given in the exercise descriptions/instructions. if you feel like you missed something, or things don't make sense anymore? Your first step should be to double check what the assignment says.
 
+- **Reuse your design**. A lot of these assignments will be from scratch. As not to lose too much time on having to create a design for every exercise/project, I suggest you create one design and copy paste the css to each project. This way you will save a lot of time that can now be spend on working on the logic!
+
 - **Do your research!!** Every exercise is build to introduce more than you know. so don't start blindly following the instructions. Research the topics and google best practices.
 
 - **Use the community/web**. Write stackoverflow questions, join discord php/dev communities, etc... One thing you will need to get used to, is being able to go online and ask for help if you are stuck. This is a crucial skill for anyone that wants to find work in development.
