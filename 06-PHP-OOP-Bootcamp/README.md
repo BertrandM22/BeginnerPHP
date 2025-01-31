@@ -7,4 +7,5 @@
     |_/usecase-01
     |_/usecase-02
     |_/usecase-03
+    |_/usecase-04
 ```
