@@ -31,7 +31,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail :</label>
-                <h5> <?php echo $errorEmail ?> </h5>
+                <h5> <?php echo $_SESSION["errorEmail"] ?> </h5>
                 <input type="email" id="email" name="email" class="form-control"/>
             </div>
             
@@ -45,27 +45,27 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="street">Rue :</label>
-                    <h5> <?php echo $errorStreet ?> </h5>
+                    <h5> <?php echo $_SESSION["errorStreet"] ?> </h5>
                     <input type="text" name="street" id="street" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="streetnumber">Numéro de rue :</label>
-                    <h5> <?php echo $errorStreetNumber ?> </h5>
+                    <h5> <?php echo $_SESSION["errorStreetNumber"] ?> </h5>
                     <input type="text" id="streetnumber" name="streetnumber" class="form-control">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">Ville :</label>
-                    <h5> <?php echo $errorCity ?> </h5>
+                    <h5> <?php echo $_SESSION["errorCity"] ?> </h5>
                     <input type="text" id="city" name="city" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Code postal :</label>
-                    <h5> <?php echo $errorZipcode ?> </h5>
+                    <h5> <?php echo $_SESSION['errorZipcode']?> </h5>
                     <input type="text" id="zipcode" name="zipcode" class="form-control">
                 </div>
-                <h5><?php echo $formOk . " " . $userStreet . " numéro " . $userStreetNumber . " à " . $userZipCode . " ".","." " . $userCity; ?></h5>
+                <h5><?php echo $_SESSION ["formOk"] . " " .$_SESSION ["userStreet"] . " numéro " . $_SESSION["userStreetNumber"] . " à " . $_SESSION["userZipCode"] . " ".","." " . $_SESSION["userCity"]; ?></h5>
             </div>
         </fieldset>
 
@@ -81,8 +81,8 @@
 
         <button type="submit" name="buttonSub" class="btn btn-primary">Commander !</button>
     </form>
-    <h4><?php echo $msg; ?></h4>
-    <footer>Vous avez déjà commandé pour <strong>&euro; <?php echo $totalValue ?></strong> en article, merci de votre fidèlité.</footer>
+    <h4><?php echo $_SESSION["msg"]; ?></h4>
+    <footer>Vous avez déjà commandé pour <strong>&euro; <?php echo $_SESSION["totalValue"] ?></strong> en article, merci de votre fidèlité.</footer>
 
     
 </div>

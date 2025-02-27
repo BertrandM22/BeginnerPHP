@@ -8,6 +8,21 @@ declare(strict_types=1);
 
 // Nous allons utiliser des variables de session, nous devons donc activer les sessions
 session_start();
+$_SESSION["errorCity" ]= "";
+$_SESSION["errorEmail" ]= "";
+$_SESSION["errorName"]= "";
+$_SESSION["errorStreet" ]= "";
+$_SESSION["errorStreetNumber" ]= "";
+$_SESSION["errorZipcode "]= "";
+$_SESSION["formSubmitted" ]= true;
+$_SESSION["formOk" ]= "";
+$_SESSION["userCity" ]= "";
+$_SESSION["userEmail" ]= "";
+$_SESSION["userStreet" ]= "";
+$_SESSION["userStreetNumber" ]= "";
+$_SESSION["userZipCode "]= "";
+$_SESSION["supertotal" ]= 0;
+$_SESSION["msg" ]= "";
 
 // Utilisez cette fonction lorsque vous avez besoin d'un aperçu de ces variables
 function whatIsHappening() {
@@ -31,79 +46,75 @@ $products = [
     ["name"=> "Chaine Hi-Fi", "price" => 16.8]
 ];
 
-$totalValue = 0;
+$_SESSION["totalValue"] = 0;
 
 
 function produits($products){
     global $totalValue, $supertotal;
  if (isset($_POST['products'])&& !empty($_POST['products'])) {
     foreach ($_POST['products'] as $i => $product) {
-       $supertotal= $totalValue += $products[$i]['price'];
+       $_SESSION["supertotal"]= $_SESSION["totalValue"] += $products[$i]['price'];
        
 
     }}}
-$errorCity = "";
-$errorEmail = "";
-$errorName = "";
-$errorStreet = "";
-$errorStreetNumber = "";
-$errorZipcode = ""; 
-$formSubmitted = true;
-$formOk = "";
+
 function validate()
 {
-    global $errorEmail, $errorName, $errorStreet, $errorStreetNumber, $errorCity, $errorZipcode, $formSubmitted, $formOk;	
+    $_SESSION["errorName"] = "";
+    $_SESSION["errorEmail"] = "";
+    $_SESSION["errorStreet"] = "";
+    $_SESSION["errorStreetNumber"] = "";
+    $_SESSION["errorCity"] = "";
+    $_SESSION["errorZipcode"] = "";
+    $_SESSION["formSubmitted"] = true;
+    
     if (empty($_POST['name'])) {
-        $errorName = "Name is required";
-        $formSubmitted = false;
+        $_SESSION["errorName"] = "Name is required";
+        $_SESSION["formSubmitted"] = false;
         
     }
     if (empty($_POST['email'])) {
         
-        $errorEmail = "Email is required";
-        $formSubmitted = false;
+        $_SESSION["errorEmail"] = "Email is required";
+        $_SESSION["formSubmitted"] = false;
     }
     if (empty($_POST['street'])) {
-        $errorStreet = "street is required";
-        $formSubmitted = false;
+        $_SESSION["errorStreet"] = "street is required";
+        $_SESSION["formSubmitted"] = false;
         
     }
     if (empty($_POST['streetnumber'])) {
-        $errorStreetNumber = "streetnumber is required";
-        $formSubmitted = false;
+        $_SESSION["errorStreetNumber"] = "streetnumber is required";
+        $_SESSION["formSubmitted"] = false;
     }
     if (empty($_POST['city'])) {
-        $errorCity = "city is required";
-        $formSubmitted = false;
+        $_SESSION["errorCity"] = "city is required";
+        $_SESSION["formSubmitted"] = false;
     }
     if (empty($_POST['zipcode'])) {
-        $errorZipcode = "zipcode is required";
-        $formSubmitted = false;
+        $_SESSION["errorZipcode"] = "zipcode is required";
+        $_SESSION["formSubmitted"] = false;
     }else {
-    $formSubmitted = true;
-    var_dump($formSubmitted);
-        $formOk= 'toute les information de livraison ont été enregistrer:';
+        $_SESSION["formSubmitted"] = true;
+   
+    $_SESSION["formOk"]= 'toute les information de livraison ont été enregistrer:';
     }
 
     // TODO: Cette fonction renverra une liste de champs invalides
     return [];
 }
-$userCity="";
-$userEmail="";
-$userStreet="";
-$userStreetNumber="";
-$userZipCode="";
+
 
  function handleForm()
 
     {
-        global  $userCity, $userEmail, $userStreet, $userStreetNumber, $userZipCode, $formSubmitted, $formOk;
+       
    
-        $userCity=$_POST['city'];
-        $userEmail=$_POST['email'];
-        $userStreet=$_POST['street'];
-        $userStreetNumber=$_POST['streetnumber'];
-        $userZipCode=$_POST['zipcode'];
+        $_SESSION["userCity"]=$_POST['city'];
+        $_SESSION["userEmail"]=$_POST['email'];
+        $_SESSION["userStreet"]=$_POST['street'];
+        $_SESSION["userStreetNumber"]=$_POST['streetnumber'];
+        $_SESSION["userZipCode"]=$_POST['zipcode']; 
 
         // TODO: tâches liées au formulaire (étape 1)
 
@@ -119,7 +130,7 @@ $userZipCode="";
 
 // TODO: remplacer ce if par une vérification réelle de la soumission du formulaire
 
-$msg="";
+
 
 if (isset($_POST['buttonSub'])&& !empty($_POST['products'])) {
 
@@ -127,18 +138,19 @@ if (isset($_POST['buttonSub'])&& !empty($_POST['products'])) {
    
    handleForm();
    
-   if($formSubmitted== true){
+   if($_SESSION['formSubmitted']== true){
     
-    $supertotal= produits($products);
+    $_SESSION["supertotal"]= produits($products);
    
    
-     $msg="Votre commande a été envoyée";
+    $_SESSION["msg"]="Votre commande a été envoyée";
     }else {
-        $supertotal=0;
-        $msg= "il manque des champs requis pour valider la commande";
+        $_SESSION["supertotal"]=0;
+        $_SESSION["msg"]= "il manque des champs requis pour valider la commande";
     }
    
 }
 
 
 require 'form-view.php';
+?>
