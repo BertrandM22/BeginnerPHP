@@ -1,4 +1,9 @@
 <?php
+echo "Exercise 1 starts here:";
 
-// In strict mode, only a variable of the requested type (like: int of the type declaration) will be accepted, or a TypeError will be thrown.
-declare(strict_types=1);
+function new_exercise()
+{
+    $block = "<br><hr><br/>Exercise $x starts here:<hr/><br/>";
+    echo $block;
+}
+?>
