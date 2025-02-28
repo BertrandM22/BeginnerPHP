@@ -2,16 +2,17 @@
 
 declare(strict_types=1);
 
-/* EXERCISE 1
-TODO: Create a class beverage.
-TODO: Create the properties color (string), price (float) and temperature (string) and also foresee a construct.
-TODO: Have a default value "cold" in the construct for temperature.
+/* EXERCICE 1
+TODO: Créez une classe boisson.
+TODO: Créez les propriétés couleur (string), prix (float) et température (string) et prévoyez également un constructeur.
+TODO: Ayez une valeur par défaut "froide" dans le constructeur pour la température.
 
-Remember for now we will use properties and methods that can be accessed from everywhere.
-TODO: Make a getInfo function which returns "This beverage is <temperature> and <color>."
-TODO: Instantiate an object which represents cola. Make sure that the color is set to black, the price equals 2 euro and the temperature to cold automatically
- print the getInfo on the screen.
-TODO: Print the temperature on the screen.
+Rappelez-vous que pour l'instant, nous utiliserons des propriétés et des méthodes accessibles de partout.
+TODO: Faites une fonction getInfo qui retourne "Cette boisson est <température> et <couleur>."
+TODO: Instanciez un objet qui représente du cola. Assurez-vous que la couleur soit définie sur noir, que le prix soit de 2 euros et que la température soit automatiquement froide.
+ Imprimez le getInfo à l'écran.
+TODO: Imprimez la température à l'écran.
 
-USE TYPEHINTING EVERYWHERE!
+UTILISEZ LE TYPEHINTING PARTOUT !
+*/
 */

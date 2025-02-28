@@ -1,21 +1,25 @@
-<?php // Ce fichier contient principalement des éléments pour votre vue / html ?>
+?php // Ce fichier contient principalement des éléments pour votre vue / html 
+?>
 
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css"
-          rel="stylesheet"/>
+        rel="stylesheet" />
     <title>Votre magasin élégant</title>
 </head>
+
 <body>
-<div class="container">
-    <h1>Passez votre commande</h1>
-    <?php // Navigation pour quand vous en avez besoin ?>
-    <?php /*
+    <div class="container">
+        <h1>Passez votre commande</h1>
+        <?php // Navigation pour quand vous en avez besoin 
+        ?>
+        <?php /*
     <nav>
         <ul class="nav">
             <li class="nav-item">
@@ -27,70 +31,71 @@
         </ul>
     </nav>
     */ ?>
-    <form method="POST">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="email">E-mail :</label>
-                <h5> <?php echo $_SESSION["errorEmail"] ?> </h5>
-                <input type="email" id="email" name="email" class="form-control"/>
-            </div>
-            
-           
-            <div></div>
-        </div>
-
-        <fieldset>
-            <legend>Adresse</legend>
-
+        <form method="POST">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="street">Rue :</label>
-                    <h5> <?php echo $_SESSION["errorStreet"] ?> </h5>
-                    <input type="text" name="street" id="street" class="form-control">
+                    <label for="email">E-mail :</label>
+                    <h5 class="text-danger"><?= $invalidFields["email"] ?? '' ?></h5>
+                    <input type="email" id="email" name="email" class="form-control" />
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="streetnumber">Numéro de rue :</label>
-                    <h5> <?php echo $_SESSION["errorStreetNumber"] ?> </h5>
-                    <input type="text" id="streetnumber" name="streetnumber" class="form-control">
-                </div>
+                <div></div>
             </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="city">Ville :</label>
-                    <h5> <?php echo $_SESSION["errorCity"] ?> </h5>
-                    <input type="text" id="city" name="city" class="form-control">
+
+            <fieldset>
+                <legend>Adresse</legend>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="street">Rue :</label>
+                        <h5 class="text-danger"><?= $invalidFields["street"] ?? '' ?></h5>
+                        <input type="text" name="street" id="street" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="streetnumber">Numéro de rue :</label>
+                        <h5 class="text-danger"><?= $invalidFields["streetnumber"] ?? '' ?></h5>
+                        <input type="text" id="streetnumber" name="streetnumber" class="form-control">
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="zipcode">Code postal :</label>
-                    <h5> <?php echo $_SESSION['errorZipcode']?> </h5>
-                    <input type="text" id="zipcode" name="zipcode" class="form-control">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="city">Ville :</label>
+                        <h5 class="text-danger"><?= $invalidFields["city"] ?? '' ?></h5>
+                        <input type="text" id="city" name="city" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="zipcode">Code postal :</label>
+                        <h5 class="text-danger"><?= $invalidFields["zipcode"] ?? '' ?></h5>
+                        <input type="text" id="zipcode" name="zipcode" class="form-control">
+                    </div>
+
+                    <h5 class="alert alert-success"><?= $successMessage ?? '' ?></h5>
                 </div>
-                <h5><?php echo $_SESSION ["formOk"] . " " .$_SESSION ["userStreet"] . " numéro " . $_SESSION["userStreetNumber"] . " à " . $_SESSION["userZipCode"] . " ".","." " . $_SESSION["userCity"]; ?></h5>
-            </div>
-        </fieldset>
+            </fieldset>
+            <fieldset>
+                <legend>Produits</legend>
+                <?php foreach ($products as $i => $product): ?>
+                    <label>
+                        <?php // <?= est équivalent à <?php echo 
+                        ?>
+                        <input type="checkbox" value="1" name="products[<?= $i ?>]" /> <?= $product['name'] ?> -
+                        &euro; <?= number_format($product['price'], 2) ?></label><br />
+                <?php endforeach; ?>
+                <h5 class="text-danger"><?= $invalidFields["products"] ?? '' ?></h5>
+            </fieldset>
 
-        <fieldset>
-            <legend>Produits</legend>
-            <?php foreach ($products as $i => $product): ?>
-                <label>
-                    <?php // <?= est équivalent à <?php echo ?>
-                    <input type="checkbox" value="1" name="products[<?php echo $i ?>]"/> <?php echo $product['name'] ?> -
-                    &euro; <?= number_format($product['price'], 2) ?></label><br />
-            <?php endforeach; ?>
-        </fieldset>
+            <button type="submit" name="buttonSub" class="btn btn-primary">Commander !</button>
+        </form>
+        <h4><?= $_SESSION["msg"]; ?></h4>
+        <footer>Vous avez déjà commandé pour <strong>&euro; <?= $_SESSION["totalValue"] ?></strong> en article, merci de votre fidèlité.</footer>
 
-        <button type="submit" name="buttonSub" class="btn btn-primary">Commander !</button>
-    </form>
-    <h4><?php echo $_SESSION["msg"]; ?></h4>
-    <footer>Vous avez déjà commandé pour <strong>&euro; <?php echo $_SESSION["totalValue"] ?></strong> en article, merci de votre fidèlité.</footer>
 
-    
-</div>
+    </div>
 
-<style>
-    footer {
-        text-align: center;
-    }
-</style>
+    <style>
+        footer {
+            text-align: center;
+        }
+    </style>
 </body>
+
 </html>
