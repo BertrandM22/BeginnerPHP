@@ -75,12 +75,17 @@ function handleForm()
 
     if (!empty($invalidFields)) {
         // update session to contain error messages
-        require 'form.view.php';
+
+        require 'form-view.php';
         exit; // stop the function from continuing
     } else {
+        $_SESSION["totalValue"] = 0;
+        foreach ($_POST["products"] as $i => $product) {
+            $_SESSION["totalValue"] += $products[$i]["price"];
+        }
         $successMessage = "Merci pour votre commande! " . $_POST["street"] . " numéro " . $_POST["streetnumber"] . " à " . $_POST["zipcode"] . " " . "," . " " . $_POST["city"];
         // TODO: gérer la soumission réussie
-        require_once 'form.view.php';
+        require_once 'form-view.php';
     }
 }
 
@@ -89,5 +94,5 @@ function handleForm()
 if (!empty($_POST)) {
     handleForm();
 } else {
-    require 'form.view.php';
+    require 'form-view.php';
 }

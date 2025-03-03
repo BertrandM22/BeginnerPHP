@@ -79,13 +79,14 @@
                         ?>
                         <input type="checkbox" value="1" name="products[<?= $i ?>]" /> <?= $product['name'] ?> -
                         &euro; <?= number_format($product['price'], 2) ?></label><br />
+                       
                 <?php endforeach; ?>
                 <h5 class="text-danger"><?= $invalidFields["products"] ?? '' ?></h5>
             </fieldset>
 
             <button type="submit" name="buttonSub" class="btn btn-primary">Commander !</button>
         </form>
-        <h4><?= $_SESSION["msg"]; ?></h4>
+       
         <footer>Vous avez déjà commandé pour <strong>&euro; <?= $_SESSION["totalValue"] ?></strong> en article, merci de votre fidèlité.</footer>
 
 
